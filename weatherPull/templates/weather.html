@@ -1,14 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Weather</title>
-</head>
+    <title>Hava Durumu</title>
+</head> 
 <body>
-    <h1>Current Weather</h1>
-    <h2>City : {{ city_name }} </h2>
-    <p>Temperature: {{ temperature }}°C</p>
-    <p>Weather Description: {{ weather_description }}</p>
-    <img src="http://openweathermap.org/img/w/{{ icon }}.png" alt="Weather Icon">
+    <style>
+        h1  {
+            text-align: center;
+        }
+        h2  {
+            text-align: center;
+        }
+        p  {
+            text-align: center;
+        }
+        .image {
+            position: absolute;
+            margin-left: 930px;
+        }
+        .form-input {
+            position: absolute;
+            margin-left: 760px;
+            margin-top: 240px;
+            background-color: gray;
+            padding: 10px;
+        }
+    </style>
+
+
+    <h1>Şuan ki Hava durumu</h1>
+    {% csrf_token %}
+    <form action="" method="post" class="form-input">
+        {% csrf_token %}
+        <input type="text" id="city" name="city" required placeholder="Şehir ismini yazın...">
+        <button type="submit">Hava Durumunu Getir</button>
+    </form>
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% else %}
+        {% if city_name %}
+            <h2>Şehir: {{ city_name }}</h2>
+            <p>Sıcaklık: {{ temperature }}°C</p>
+            <p>Hava durumu açıklaması: {{ weather_description }}</p>
+            <img src="http://openweathermap.org/img/w/{{ icon }}.png" alt="Weather Icon" class="image">
+        {% endif %}
+    {% endif %}
 </body>
 </html>
 
