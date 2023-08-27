@@ -16,6 +16,9 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+BROKER_URL = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -27,6 +30,8 @@ SECRET_KEY = 'django-insecure-)z43(iev6-i83&k5!#$fm8$)execi_f0u)pch6lkwb(*tv&*@p
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
 
 
 # Application definition
@@ -82,6 +87,18 @@ DATABASES = {
     }
 }
 
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",  # Redis konfigürasyonuna göre ayarlayın
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0' 
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -105,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'tr'
 
 TIME_ZONE = 'UTC'
 
@@ -118,6 +135,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
