@@ -31,6 +31,7 @@ def weather(request):
                 "clear sky": "açık hava",
                 "overcast clouds" : "çok bulutlu",
                 "few clouds":"az bulutlu",
+                "scattered clouds": "bulutlu"
                 # Diğer hava durumu çevirilerini buraya ekleyin
             }
             if weather_description in turkish_translations:
