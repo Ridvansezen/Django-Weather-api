@@ -5,7 +5,7 @@ import requests
 
 @shared_task
 def fetch_weather_data_async(city):
-    api_key = 'ec415d880bf53898d7cea4e067bbfc15'
+    api_key = 'your-token'
 
     url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric'
 
